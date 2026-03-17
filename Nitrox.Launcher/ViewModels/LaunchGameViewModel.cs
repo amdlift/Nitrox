@@ -140,6 +140,13 @@ internal partial class LaunchGameViewModel(DialogService dialogService, ServerSe
                         Path.Combine(NitroxUser.GamePath, GameInfo.Subnautica.DataFolder, "Managed", PATCHER_DLL_NAME),
                         true
                     );
+                    File.SetUnixFileMode(
+                        destPath,                               // ← use the same dest path variable
+                        UnixFileMode.UserRead  |
+                        UnixFileMode.UserWrite |
+                        UnixFileMode.GroupRead |
+                        UnixFileMode.OtherRead
+                    );
                 }
                 catch (IOException ex)
                 {
